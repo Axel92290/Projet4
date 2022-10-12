@@ -1,0 +1,67 @@
+INSERT INTO `adresse`(`ID`, `adresse`, `codePostal`, `Ville`, `Pays`, `lattitude`, `longitude`, `utilisateurID`) 
+VALUES ('15','10 bis rue de paris','75014','Paris','France','43,214587','2,154897','1');
+
+INSERT INTO `commande`(`ID`, `datePaiement`, `dateLivraison`, `prixTotal`, `Statut`, `adresseID`, `utilisateurID`, `livreurID`) 
+VALUES ('15','01/06/2022','01/06/2022','12,99','1','1','1','1');
+
+INSERT INTO `commandeproduit`(`ID`, `quantite`, `commandeId`, `produitID`) 
+VALUES ('15','1','1','1');
+
+INSERT INTO `livreur`(`ID`, `lattitude`, `longitude`, `statut`, `utilisateurID`) 
+VALUES ('15','14,154789','25,639410','1','1');
+
+INSERT INTO `produit`(`ID`, `reference`, `nom`, `description`, `photo`, `prix`, `dateDisponibilité`) 
+VALUES ('15','1204','Poulet frites','Demi poulet avec frites maisons','1','12,99','30/05/2022');
+
+INSERT INTO `utilisateur`(`ID`, `nom`, `prénom`, `email`, `mot de passe`,`typeUtilisateur` ) 
+VALUES ('15','Bazak','Louis','bazaklouis@gmail.com','test1234*','client');
+
+
+"Faire les select/update/delete***
+
+créer un INSERT pour le livreur
+rajouter un champ dans la table utilisateur pour définir le type d'utilisateur"
+
+
+UPDATE adresse
+SET adresse = '19 rue jacques rousseau',
+  Ville = 'Antony',
+  codePostal = '92160'
+WHERE id = 1
+
+DELETE FROM `utilisateur`
+WHERE `id` = 15
+
+
+SELECT *
+FROM utilisateur
+INNER JOIN livreur ON utilisateur.ID = livreur.utilisateurID
+
+SELECT *
+FROM utilisateur
+LEFT JOIN Commande ON utilisateur.ID = commande.utilisateurID
+
+SELECT *
+FROM utilisateur
+LEFT JOIN adresse ON utilisateur.ID = adresse.utilisateurID
+
+SELECT *
+FROM adresse
+INNER JOIN Commande ON adresse.ID = commande.adresseID
+
+SELECT *
+FROM livreur
+LEFT JOIN Commande ON livreur.ID = commande.livreurID
+
+SELECT *
+FROM Commande
+LEFT JOIN commandeproduit ON commande.ID = commandeproduit.commandeID
+
+SELECT *
+FROM produit
+LEFT JOIN commandeproduit ON produit.ID = commandeproduit.produitID
+
+
+Jointure = un résultat expliqué en une phrase (raisonnement logique)
+Faire petite requête pour expliquer à l examinateur de manière claire (utilité des requêtes/manipulations etc...)
+Order by/max min/group by etc...
